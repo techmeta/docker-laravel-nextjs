@@ -1,7 +1,8 @@
+# 	docker exec backend /bin/sh -c "composer install --no-dev --optimize-autoloader && chmod -R 777 storage && php artisan key:generate"
+
 run-app-with-setup:
 	docker compose build
 	docker compose up -d
-	docker exec backend /bin/sh -c "composer install --no-dev --optimize-autoloader && chmod -R 777 storage && php artisan key:generate"
 
 run-app-with-setup-db:
 	docker compose build
@@ -9,8 +10,14 @@ run-app-with-setup-db:
 	docker exec backend /bin/sh -c "composer install --no-dev --optimize-autoloader && chmod -R 775 storage && php artisan key:generate && php artisan migrate:fresh --seed"
 	docker exec frontend /bin/sh -c "npm install && npm run build"
 
+run-app-frontend:
+	docker-compose up -d --build frontend
+
+run-app-backend:
+	docker-compose up -d --build backend
+
 run-app:
-	docker compose up -d
+	docker compose up -d --build
 
 kill-app:
 	docker compose down

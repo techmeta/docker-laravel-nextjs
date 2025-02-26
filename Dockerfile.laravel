@@ -22,7 +22,7 @@ COPY ./backend /var/www/backend
 RUN composer install --no-dev --optimize-autoloader
 
 # Permissions
-RUN chown -R www-data:www-data /var/www/backend
+# RUN chown -R www-data:www-data /var/www/backend
 RUN chmod -R 755 /var/www/backend
 RUN chmod -R 775 /var/www/backend/storage
 
